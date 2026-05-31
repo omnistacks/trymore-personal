@@ -1,0 +1,134 @@
+/* Keyframe animations and holographic scans */
+
+@keyframes mandala-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes scanline-move {
+  0% {
+    top: -10px;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+@keyframes scroll-slide {
+  0% {
+    top: 6px;
+    opacity: 1;
+  }
+  50% {
+    top: 18px;
+    opacity: 0.3;
+  }
+  100% {
+    top: 6px;
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-border {
+  0%, 100% {
+    border-color: rgba(0, 255, 136, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.05);
+  }
+  50% {
+    border-color: rgba(0, 255, 136, 0.6);
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
+  }
+}
+
+@keyframes audio-pulse {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* Ndebele-inspired geometric subtle overlay */
+.footer-cyber::after, .about-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M0 30 L30 0 L60 30 L30 60 Z' fill='none' stroke='rgba(0, 255, 136, 0.015)' stroke-width='1.5'/%3E%3Cpath d='M15 30 L30 15 L45 30 L30 45 Z' fill='none' stroke='rgba(0, 212, 255, 0.01)' stroke-width='1'/%3E%3Ccircle cx='30' cy='30' r='3' fill='none' stroke='rgba(255, 107, 53, 0.015)' stroke-width='1'/%3E%3C/svg%3E");
+  opacity: 0.8;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Custom WebGL/Canvas Cursor design */
+.custom-cursor-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+/* Glassmorphism utility rules */
+.glass-panel {
+  background: var(--glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Floating animation elements */
+.float-element {
+  animation: floating-bounce 6s ease-in-out infinite alternate;
+}
+
+@keyframes floating-bounce {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-15px);
+  }
+}
+
+/* Neon text pulse */
+.neon-pulse {
+  animation: neon-text-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes neon-text-glow {
+  0% {
+    text-shadow: 0 0 5px rgba(0, 255, 136, 0.2), 0 0 10px rgba(0, 255, 136, 0.1);
+  }
+  100% {
+    text-shadow: 0 0 15px rgba(0, 255, 136, 0.6), 0 0 25px rgba(0, 255, 136, 0.3);
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-delay: 0s !important;
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0s !important;
+    scroll-behavior: auto !important;
+  }
+  .mandala-loader, .holo-scanlines::after, .scroll-wheel, .float-element, .custom-cursor-canvas {
+    animation: none !important;
+    display: none !important;
+  }
+}

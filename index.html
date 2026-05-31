@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trymore Kudyamukonde — 3D Portfolio Website. Founder & Developer of Keith Tech (POS, GPS Fleet Tracking, Ride-Hailing, transport ticketing) based in Harare, Zimbabwe.">
+  <title>Trymore Kudyamukonde | Founder of Keith Tech — 3D Portfolio</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@400;700;900&family=Sora:wght@300;400;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+  <!-- Style sheets -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/animations.css">
+  <link rel="stylesheet" href="/css/mobile.css">
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div id="loader" class="loader-container">
+    <div class="loader-content">
+      <!-- Shona geometric mandala pulsing SVG -->
+      <svg class="mandala-loader" viewBox="0 0 100 100" width="120" height="120">
+        <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(0, 255, 136, 0.2)" stroke-width="2" />
+        <circle cx="50" cy="50" r="35" fill="none" stroke="rgba(0, 212, 255, 0.2)" stroke-width="1.5" />
+        <polygon points="50,15 80,67 20,67" fill="none" stroke="#00FF88" stroke-width="2" stroke-linejoin="round" />
+        <polygon points="50,85 20,33 80,33" fill="none" stroke="#FF6B35" stroke-width="2" stroke-linejoin="round" />
+        <circle cx="50" cy="50" r="10" fill="none" stroke="#00D4FF" stroke-width="3" />
+      </svg>
+      <div class="loader-text-group">
+        <h2 class="loader-title">KEITH TECH</h2>
+        <p class="loader-sub">Kuita basa...</p>
+        <span class="loader-status">Initializing WebGL Engine...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Cursor Overlay -->
+  <canvas id="custom-cursor" class="custom-cursor-canvas"></canvas>
+
+  <!-- Audio Control Layer -->
+  <div class="audio-control-container">
+    <button id="audio-toggle" class="audio-toggle-btn" aria-label="Toggle ambient soundtrack">
+      <svg class="speaker-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <path class="wave-lines" d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+      </svg>
+      <span class="audio-label">AMBIENT MUSIC</span>
+    </button>
+  </div>
+
+  <!-- Global Header Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo" id="nav-logo-link">
+        <span class="logo-text">KEITH TECH</span>
+        <svg class="logo-circuit" viewBox="0 0 100 10" width="100" height="10">
+          <line x1="0" y1="5" x2="80" y2="5" stroke="#00FF88" stroke-width="2" />
+          <circle cx="80" cy="5" r="3" fill="#00FF88" />
+          <line x1="80" y1="5" x2="90" y2="0" stroke="#00FF88" stroke-width="1.5" />
+          <line x1="80" y1="5" x2="90" y2="10" stroke="#00FF88" stroke-width="1.5" />
+        </svg>
+      </a>
+      
+      <nav class="nav-links-wrapper">
+        <a href="#about" class="nav-link">IDENTITY</a>
+        <a href="#products" class="nav-link">PRODUCTS</a>
+        <a href="#skills" class="nav-link">STACK</a>
+        <a href="#testimonials" class="nav-link">REVIEWS</a>
+        <a href="#contact" class="nav-link">CONTACT</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://wa.me/263789926928" target="_blank" rel="noopener" class="nav-cta-btn" id="nav-whatsapp-btn">
+          <span>WHATSAPP</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- SECTION 1: HERO / LANDING (Full 3D WebGL Canvas in Background) -->
+  <section id="hero" class="hero-section">
+    <div id="canvas-container" class="canvas-container">
+      <canvas id="hero-canvas"></canvas>
+    </div>
+    
+    <div class="hero-content">
+      <div class="hero-text-card">
+        <h1 class="hero-name" id="hero-name-heading">
+          <span class="name-prefix">TRYMORE</span><br>
+          <span class="name-suffix">KUDYAMUKONDE</span>
+        </h1>
+        <div class="hero-roles">
+          <span class="role-badge">Founder</span>
+          <span class="role-dot">•</span>
+          <span class="role-badge">Developer</span>
+          <span class="role-dot">•</span>
+          <span class="role-badge">Innovator</span>
+        </div>
+        <div class="hero-divider"></div>
+        <p class="hero-tagline">
+          Building Africa's Tech Stack<br>
+          <span class="hero-loc">From Harare, Zimbabwe 🇿🇼</span>
+        </p>
+        
+        <div class="hero-ctas">
+          <a href="#about" class="btn btn-primary" id="btn-explore">
+            EXPLORE MY WORK <span class="arrow">→</span>
+          </a>
+          <a href="#contact" class="btn btn-secondary" id="btn-download-cv">
+            GET IN TOUCH
+          </a>
+        </div>
+      </div>
+      
+      <div class="hero-badge-container">
+        <div class="hero-badge">
+          <span class="badge-stars">4.8★</span>
+          <span class="badge-lbl">1K+ Downloads</span>
+          <span class="badge-sub">Google Play Store</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <span class="scroll-text">SCROLL TO ORBIT</span>
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: ABOUT / IDENTITY -->
+  <section id="about" class="about-section">
+    <div class="section-container">
+      <div class="about-grid">
+        
+        <!-- Left: CSS 3D Holographic Business Card -->
+        <div class="about-visual">
+          <div class="holo-card-wrapper">
+            <div class="holo-card" id="interactive-card">
+              <div class="holo-card-inner">
+                <div class="holo-scanlines"></div>
+                <div class="holo-card-glow"></div>
+                
+                <div class="holo-avatar-container">
+                  <!-- Abstract low-poly mask representation -->
+                  <svg class="holo-avatar-svg" viewBox="0 0 100 120" width="100%" height="100%">
+                    <polygon points="50,10 75,30 75,70 50,110 25,70 25,30" fill="none" stroke="#00FF88" stroke-width="2" />
+                    <polygon points="50,25 70,40 70,65 50,100 30,65 30,40" fill="none" stroke="#00D4FF" stroke-width="1.5" />
+                    <!-- Mask features -->
+                    <line x1="38" y1="45" x2="48" y2="45" stroke="#FF6B35" stroke-width="2" />
+                    <line x1="52" y1="45" x2="62" y2="45" stroke="#FF6B35" stroke-width="2" />
+                    <polygon points="50,45 45,70 55,70" fill="none" stroke="#00FF88" stroke-width="1.5" />
+                    <line x1="40" y1="85" x2="60" y2="85" stroke="#00D4FF" stroke-width="2" />
+                    <line x1="45" y1="92" x2="55" y2="92" stroke="#00FF88" stroke-width="1" />
+                  </svg>
+                </div>
+                
+                <div class="holo-card-info">
+                  <div class="holo-monogram">TK</div>
+                  <div class="holo-details">
+                    <span class="holo-name">T. KUDYAMUKONDE</span>
+                    <span class="holo-status">SECURE VERIFIED // FOUNDER</span>
+                    <span class="holo-system">KEITH TECH OS v1.02</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Right: Professional Narrative & Stats -->
+        <div class="about-text">
+          <div class="cyber-header">
+            <span class="cyber-subtitle">SYSTEM REGISTER //</span>
+            <h2 class="cyber-title">WHO AM I</h2>
+            <div class="title-underline"></div>
+          </div>
+          
+          <div class="info-block">
+            <div class="info-row">
+              <span class="info-label">FULL NAME:</span>
+              <span class="info-val">Trymore Kudyamukonde</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">LOCATION:</span>
+              <span class="info-val">Harare, Zimbabwe 🇿🇼</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">ROLE:</span>
+              <span class="info-val">Mobile & Full-Stack Developer</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">FOUNDED:</span>
+              <span class="info-val">Keith Tech (<a href="https://keithtechpos.com" target="_blank" rel="noopener">keithtechpos.com</a>)</span>
+            </div>
+          </div>
+
+          <p class="about-paragraph">
+            I build the tools African businesses need to grow. From point-of-sale systems for small kiosks to real-time GPS fleet tracking for cross-border logistics companies — Keith Tech is my mission to make enterprise-grade software accessible, rugged, and reliable across the continent.
+          </p>
+
+          <!-- Animated Stats Row -->
+          <div class="stats-row" id="stats-counter-trigger">
+            <div class="stat-box">
+              <div class="stat-num" data-target="6">0</div>
+              <div class="stat-label">Apps Built</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num" data-target="1000">0</div>
+              <div class="stat-label">Downloads</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num-decimal" data-target="4.8">0.0</div>
+              <div class="stat-label">Play Store Rating</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num" data-target="7">0</div>
+              <div class="stat-label">Years Building</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: PRODUCTS / APPS SHOWCASE -->
+  <section id="products" class="products-section">
+    <div class="section-container">
+      <div class="cyber-header center">
+        <span class="cyber-subtitle">// PRODUCT PORTFOLIO</span>
+        <h2 class="cyber-title">KEITH TECH APPLICATIONS</h2>
+        <div class="title-underline center"></div>
+      </div>
+      
+      <!-- Interactive WebGL/CSS 3D Carousel container -->
+      <div class="carousel-container-outer">
+        <button id="prev-btn" class="carousel-nav-btn prev" aria-label="Previous product">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        
+        <div class="carousel-viewport" id="carousel-viewport">
+          <!-- Main container that carousel.js will inject 3D cards into, or build with elegant DOM layout -->
+          <div class="carousel-track" id="carousel-track">
+            <!-- Product Card 1 -->
+            <div class="product-card active" data-color="#00FF88" data-index="0">
+              <div class="product-glow-halo" style="--halo-color: #00FF88;"></div>
+              <div class="product-card-inner">
+                <div class="card-tag">POS & INVENTORY</div>
+                <h3 class="product-title">KEITH TECH POS</h3>
+                <p class="product-tagline">"Run your shop from your phone"</p>
+                <ul class="product-features">
+                  <li>Sales tracking & analytics</li>
+                  <li>Inventory management</li>
+                  <li>Receipt thermal printing</li>
+                  <li>Offline offline capability</li>
+                </ul>
+                <div class="product-actions">
+                  <a href="https://play.google.com/store/apps/details?id=com.keithtechpos.sale" target="_blank" rel="noopener" class="product-link">com.keithtechpos.sale</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="product-card" data-color="#00D4FF" data-index="1">
+              <div class="product-glow-halo" style="--halo-color: #00D4FF;"></div>
+              <div class="product-card-inner">
+                <div class="card-tag">REAL-TIME TELEMETRY</div>
+                <h3 class="product-title">KEITH GPS SYSTEM</h3>
+                <p class="product-tagline">"Know where every asset is, always"</p>
+                <ul class="product-features">
+                  <li>Live map telemetry integration</li>
+                  <li>Ignition state notifications</li>
+                  <li>Geofencing & history playback</li>
+                </ul>
+                <div class="product-actions">
+                  <span class="product-link">com.gps.keithgps.tracking</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="product-card" data-color="#FF6B35" data-index="2">
+              <div class="product-glow-halo" style="--halo-color: #FF6B35;"></div>
+              <div class="product-card-inner">
+                <div class="card-tag">LOGISTICS ENGINE</div>
+                <h3 class="product-title">FLEET MANAGER ZW</h3>
+                <p class="product-tagline">"Manage your entire fleet, one dashboard"</p>
+                <ul class="product-features">
+                  <li>Driver behavioral analysis</li>
+                  <li>Intelligent route optimization</li>
+                  <li>Fuel depletion monitors</li>
+                </ul>
+                <div class="product-actions">
+                  <span class="product-link">com.fleet.manage.zw</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="product-card" data-color="#A855F7" data-index="3">
+              <div class="product-glow-halo" style="--halo-color: #A855F7;"></div>
+              <div class="product-card-inner">
+                <div class="card-tag">RIDE HAILING PLATFORM</div>
+                <h3 class="product-title">TORA RIDE</h3>
+                <p class="product-tagline">"Zimbabwe's own ride app"</p>
+                <ul class="product-features">
+                  <li>Customer & driver modules</li>
+                  <li>Instant route mapping</li>
+                  <li>In-app multi-currency wallet</li>
+                </ul>
+                <div class="product-actions">
+                  <span class="product-link">com.toraride.customer &bull; driver</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 5 -->
+            <div class="product-card" data-color="#EF4444" data-index="4">
+              <div class="product-glow-halo" style="--halo-color: #EF4444;"></div>
+              <div class="product-card-inner">
+                <div class="card-tag">TRANSPORTATION TICKETING</div>
+                <h3 class="product-title">KEITH BUS TICKET</h3>
+                <p class="product-tagline">"Digital tickets for Zim's buses"</p>
+                <ul class="product-features">
+                  <li>Instant QR ticket generation</li>
+                  <li>Interactive seat booking maps</li>
+                  <li>Offline ticket terminal prints</li>
+                </ul>
+                <div class="product-actions">
+                  <span class="product-link">com.keithtech.busticketing</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 6 -->
+            <div class="product-card" data-color="#EAB308" data-index="5">
+              <div class="product-glow-halo" style="--halo-color: #EAB308;"></div>
+              <div class="product-card-inner">
+                <div class="card-tag">LIGHTWEIGHT BILLING</div>
+                <h3 class="product-title">AFRICA POS / ECOPOS</h3>
+                <p class="product-tagline">"POS built for Africa's realities"</p>
+                <ul class="product-features">
+                  <li>Ultrafast low-data modes</li>
+                  <li>Robust offline database caching</li>
+                  <li>Automatic multi-currency math</li>
+                </ul>
+                <div class="product-actions">
+                  <span class="product-link">com.keithtech.ecopos</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 7 -->
+            <div class="product-card" data-color="#06B6D4" data-index="6">
+              <div class="product-glow-halo" style="--halo-color: #06B6D4;"></div>
+              <div class="product-card-inner">
+                <div class="card-tag">CLOUD SYSTEMS</div>
+                <h3 class="product-title">KEITH TRACK BACKOFFICE</h3>
+                <p class="product-tagline">"Your business brain in the cloud"</p>
+                <ul class="product-features">
+                  <li>Web management interface</li>
+                  <li>Secure administrative access</li>
+                  <li>Aggregated sales analytics</li>
+                </ul>
+                <div class="product-actions">
+                  <span class="product-link">Back-office cloud SaaS</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        
+        <button id="next-btn" class="carousel-nav-btn next" aria-label="Next product">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+      
+      <!-- Carousel Dots Indicator -->
+      <div class="carousel-indicators" id="carousel-dots">
+        <!-- Dots injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: SKILLS & TECH STACK -->
+  <section id="skills" class="skills-section">
+    <div class="section-container">
+      <div class="about-grid reverse">
+        
+        <!-- Left: Three.js Node Graph Canvas -->
+        <div class="skills-visual">
+          <div class="canvas-container relative-canvas">
+            <canvas id="skills-canvas"></canvas>
+            <div class="canvas-instruction-overlay">
+              <span>CLICK SPHERES TO DRILL DOWN</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Node Information Panel / General Skill list -->
+        <div class="skills-text">
+          <div class="cyber-header">
+            <span class="cyber-subtitle">NEURAL LINK REGISTER //</span>
+            <h2 class="cyber-title">STACK & CAPABILITIES</h2>
+            <div class="title-underline"></div>
+          </div>
+          
+          <p class="skills-desc">
+            An interactive neural network representing my developer DNA. Click nodes in the 3D grid on the left to map dependencies, or scan the core clusters below.
+          </p>
+
+          <div class="skills-grid-summary">
+            <!-- Mobile and Web clusters -->
+            <div class="skill-category-card">
+              <div class="cat-header" style="border-left-color: #00FF88;">
+                <h4>MOBILE DEVELOPMENT</h4>
+              </div>
+              <div class="cat-tags">
+                <span class="skill-tag">Flutter</span>
+                <span class="skill-tag">Android (Java/Kotlin)</span>
+                <span class="skill-tag">React Native</span>
+              </div>
+            </div>
+
+            <div class="skill-category-card">
+              <div class="cat-header" style="border-left-color: #00D4FF;">
+                <h4>BACKEND & DB</h4>
+              </div>
+              <div class="cat-tags">
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">PHP</span>
+                <span class="skill-tag">MySQL</span>
+                <span class="skill-tag">SQLite</span>
+                <span class="skill-tag">Firebase</span>
+                <span class="skill-tag">PostgreSQL</span>
+              </div>
+            </div>
+
+            <div class="skill-category-card">
+              <div class="cat-header" style="border-left-color: #FF6B35;">
+                <h4>HARDWARE & INTEGRATION</h4>
+              </div>
+              <div class="cat-tags">
+                <span class="skill-tag">Bluetooth Thermal Printers</span>
+                <span class="skill-tag">ESC/POS Printing</span>
+                <span class="skill-tag">POS Terminal Devices</span>
+                <span class="skill-tag">GPS Hardware Protocols</span>
+              </div>
+            </div>
+            
+            <div class="skill-category-card">
+              <div class="cat-header" style="border-left-color: #A855F7;">
+                <h4>BUSINESS SPECIALTIES</h4>
+              </div>
+              <div class="cat-tags">
+                <span class="skill-tag">SaaS Architectures</span>
+                <span class="skill-tag">Realtime Telemetry</span>
+                <span class="skill-tag">Ride Hailing Algorithms</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: TESTIMONIALS / REVIEWS -->
+  <section id="testimonials" class="testimonials-section">
+    <div class="section-container">
+      <div class="cyber-header center">
+        <span class="cyber-subtitle">// REVIEWS FROM STORE FRONT</span>
+        <h2 class="cyber-title">CLIENT & USER VOICES</h2>
+        <div class="title-underline center"></div>
+      </div>
+
+      <div class="testimonials-grid">
+        <!-- Review 1 -->
+        <div class="testimonial-card">
+          <div class="testi-header">
+            <div class="avatar-poly" style="--accent: #00FF88;">MN</div>
+            <div class="testi-author">
+              <span class="author-name">Moira Ndoro</span>
+              <span class="author-label">Business Owner, Harare</span>
+            </div>
+          </div>
+          <div class="stars-row">★★★★★</div>
+          <p class="testi-content">
+            "Keith Tech POS has been a game-changer for my business. The app is incredibly user-friendly and inventory tracking is solid. We save hours every single day."
+          </p>
+          <div class="testi-footer">Verified Google Play Review</div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="testimonial-card">
+          <div class="testi-header">
+            <div class="avatar-poly" style="--accent: #FF6B35;">PM</div>
+            <div class="testi-author">
+              <span class="author-name">Prudance Mutimba</span>
+              <span class="author-label">Operations Manager</span>
+            </div>
+          </div>
+          <div class="stars-row">★★★★★</div>
+          <p class="testi-content">
+            "Very useful tool for managing sales and inventory. It has great potential to help many local small and medium businesses expand digitally."
+          </p>
+          <div class="testi-footer">Verified User Audit</div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="testimonial-card">
+          <div class="testi-header">
+            <div class="avatar-poly" style="--accent: #00D4FF;">SC</div>
+            <div class="testi-author">
+              <span class="author-name">Subhadeep Chowdhury</span>
+              <span class="author-label">POS Integration Specialist</span>
+            </div>
+          </div>
+          <div class="stars-row">★★★★★</div>
+          <p class="testi-content">
+            "Excellent application for POS sales. Simple API integration protocols and extremely lightweight. Exactly what is required for variable data grids."
+          </p>
+          <div class="testi-footer">Developer Community</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: CONTACT -->
+  <section id="contact" class="contact-section">
+    <div class="section-container">
+      <div class="contact-grid">
+        
+        <!-- Left: Harare Coordinate Map Zoom (Three.js Map) -->
+        <div class="contact-visual">
+          <div class="canvas-container relative-canvas">
+            <canvas id="contact-canvas"></canvas>
+            <div class="map-coordinates-overlay">
+              <span class="coord-label">LATITUDE //</span> <span class="coord-val">-17.8187° S</span><br>
+              <span class="coord-label">LONGITUDE //</span> <span class="coord-val">31.0488° E</span><br>
+              <span class="coord-label">LOC //</span> <span class="coord-val">HARARE, ZIMBABWE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Contact Form -->
+        <div class="contact-form-wrapper">
+          <div class="cyber-header">
+            <span class="cyber-subtitle">COMMUNICATION ARRAY //</span>
+            <h2 class="cyber-title">INITIATE CONNECTION</h2>
+            <div class="title-underline"></div>
+          </div>
+          
+          <form class="cyber-form" id="contact-form">
+            <div class="form-group">
+              <input type="text" id="form-name" required placeholder=" ">
+              <label for="form-name">YOUR NAME</label>
+              <div class="input-line"></div>
+            </div>
+            
+            <div class="form-group">
+              <input type="email" id="form-email" required placeholder=" ">
+              <label for="form-email">YOUR EMAIL</label>
+              <div class="input-line"></div>
+            </div>
+            
+            <div class="form-group">
+              <input type="text" id="form-subject" required placeholder=" ">
+              <label for="form-subject">SUBJECT</label>
+              <div class="input-line"></div>
+            </div>
+            
+            <div class="form-group">
+              <textarea id="form-message" required rows="4" placeholder=" "></textarea>
+              <label for="form-message">MESSAGE DESCRIPTION</label>
+              <div class="input-line"></div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-submit" id="btn-submit-form">
+              SEND MESSAGE <span class="arrow">→</span>
+            </button>
+          </form>
+
+          <div class="direct-channels">
+            <div class="channel-card">
+              <span class="channel-lbl">WHATSAPP DIRECT</span>
+              <a href="https://wa.me/263789926928" target="_blank" rel="noopener" class="channel-val">+263 78 992 6928</a>
+            </div>
+            <div class="channel-card">
+              <span class="channel-lbl">EMAIL BADGE</span>
+              <a href="mailto:tkudyamukonde@gmail.com" class="channel-val">tkudyamukonde@gmail.com</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: FOOTER -->
+  <footer class="footer-cyber">
+    <div class="footer-bg-pattern"></div>
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h3>KEITH TECH</h3>
+          <p class="brand-slogan">"Empowering African businesses through intelligent technology"</p>
+          <span class="brand-loc">1357 Epworth Jacha, Harare, Zimbabwe 🇿🇼</span>
+        </div>
+        
+        <div class="footer-links">
+          <div class="links-col">
+            <span class="col-title">NETWORKS</span>
+            <a href="https://play.google.com/store/apps/details?id=com.keithtechpos.sale" target="_blank" rel="noopener">Google Play</a>
+            <a href="https://github.com" target="_blank" rel="noopener">GitHub Space</a>
+            <a href="https://wa.me/263789926928" target="_blank" rel="noopener">WhatsApp Direct</a>
+            <a href="mailto:tkudyamukonde@gmail.com">Secure Email</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-divider"></div>
+
+      <div class="footer-proverb">
+        <span class="proverb-shona">"Chara chimwe hachitswanyi inda"</span>
+        <span class="proverb-translation">— "One finger cannot kill a louse" (Community & Collaboration) &bull; Shona Proverb</span>
+      </div>
+      
+      <div class="footer-bottom">
+        <span>© 2026 Keith Tech · All Rights Reserved</span>
+        <span>Built by Trymore Kudyamukonde</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>
